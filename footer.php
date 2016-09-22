@@ -6,21 +6,21 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package RavensPearl
+ * @package Ravenspearl
  */
 
 ?>
 
-	</div><!-- .main-content -->
+	</div><!-- #main-content -->
+</div><!-- .main-container -->
 
-	<footer>
-		
-	</footer>
+
 
 <?php wp_footer(); ?>
+<script src="<?php bloginfo('template_directory'); ?>/assets/js/build.min.js"></script>
 
-<script src="<?php bloginfo('template_directory'); ?>/assets/js/bootstrap.min.js"></script>
-<script src="<?php bloginfo('template_directory'); ?>/assets/js/main.js"></script>
+</body>
+</html>
 
 </body>
 </html>

@@ -1,0 +1,7 @@
+node_modules/
+assets-src/
+exclude.txt
+gruntfile.js
+package.json
+.git
+.DS_Store

@@ -7,6 +7,15 @@
  * @package RavensPearl
  */
 
+if( function_exists('acf_add_options_page') ) {
+
+	
+
+	acf_add_options_page('Bios');
+
+	
+}
+
 if ( ! function_exists( 'ravenspearl_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -45,6 +54,8 @@ function ravenspearl_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'primary' => esc_html__( 'Primary', 'ravenspearl' ),
+		'secondary' => esc_html__( 'Secondary', 'ravenspearl' ),
+		'custom' => esc_html__( 'Custom', 'ravenspearl' ),
 	) );
 
 	/*
@@ -132,6 +143,20 @@ function ravenspearl_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'ravenspearl_scripts' );
 
+add_filter( 'woocommerce_product_single_add_to_cart_text', 'woo_custom_cart_button_text' );    // 2.1 +
+ 
+function woo_custom_cart_button_text() {
+ 
+        return __( 'Purchase', 'woocommerce' );
+ 
+}
+
+//change return to cart link
+function change_return_shop_url() {
+    return home_url();  
+}
+add_filter( 'woocommerce_return_to_shop_redirect', 'change_return_shop_url' );
+
 /**
  * Implement the Custom Header feature.
  */
@@ -157,10 +182,13 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/jetpack.php';
 
+
+
 /** WooCommerce **/
 
 remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
 remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
 
 add_action('woocommerce_before_main_content', 'my_theme_wrapper_start', 10);
 add_action('woocommerce_after_main_content', 'my_theme_wrapper_end', 10);

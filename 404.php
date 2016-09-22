@@ -14,6 +14,7 @@ get_header(); ?>
 
 			<section class="error-404 not-found">
 				<header class="page-header">
+					404.php yo
 					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'ravenspearl' ); ?></h1>
 				</header><!-- .page-header -->
 
