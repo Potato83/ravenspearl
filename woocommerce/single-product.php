@@ -53,10 +53,10 @@ get_header( 'shop' ); ?>
 		 *
 		 * @hooked woocommerce_get_sidebar - 10
 		 */
-		do_action( 'woocommerce_sidebar' );
+		//do_action( 'woocommerce_sidebar' );
 	?>
-
-<?php get_footer( 'shop' ); ?>
 <div class="center">
 	<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Back</a>
 </div>
+<?php get_footer( 'shop' ); ?>
+

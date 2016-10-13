@@ -20,8 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-?>
 
+get_template_part('content', 'header-work'); ?>
 <?php
 	/**
 	 * woocommerce_before_single_product hook.
@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
-
+	<div class="single-prod-img">
 	<?php
 		/**
 		 * woocommerce_before_single_product_summary hook.
@@ -46,11 +46,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 * @hooked woocommerce_show_product_images - 20
 		 */
 		do_action( 'woocommerce_before_single_product_summary' );
+		// ^ needed to show image
 	?>
-
+	</div>
 	<div class="summary entry-summary">
 		
-		<?php echo 'hello this is woocommerce/content-single-product.php ya know';
+		<?php //echo 'hello this is woocommerce/content-single-product.php ya know';
 			/**
 			 * woocommerce_single_product_summary hook.
 			 *
@@ -86,6 +87,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 <script>
 $(function() {
     console.log( "hello you are on a product page!" );
-    $('html, body').animate({ scrollTop: 200 }, 400);
+    
+    
+    	// $('html, body').animate({ scrollTop: 60 }, 400);
+    
 });
 </script>

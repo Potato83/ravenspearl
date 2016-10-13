@@ -17,7 +17,14 @@
 			} else {
 				the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 			}
-
+	  if(has_post_thumbnail()){ 
+				
+				
+					echo the_post_thumbnail( 'thumbnail');
+					echo '<div class="padder"></div>';
+				} else{
+					echo '';
+				}
 		if ( 'post' === get_post_type() ) : ?>
 		<div class="entry-meta">
 			<?php ravenspearl_posted_on(); ?>

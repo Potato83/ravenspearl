@@ -1,13 +1,10 @@
 <?php
 /*
-Template Name: Home Page 
+Template Name: Ajax Home Page 
  */
 get_header();
-
 $gallery = get_field('gallery');
-get_template_part('content', 'header');
 ?>
-
 <div class="btn menu-toggle show-menu">
 	
 	<span class="icon-bar"></span>
@@ -40,8 +37,19 @@ get_template_part('content', 'header');
         <div id="page-content-wrapper">
             <section id="home-page">
 	<div class="row">
-
+	
+	
 	<div class="col-md-12">
+		<?php
+		 	if (have_posts()) : while (have_posts()) : the_post(); ?>
+ 
+    <a class="post-link" rel="<?php the_ID(); ?>" href="<?php the_permalink(); ?>">
+ 
+       <?php the_title(); ?> 
+ 
+    </a>
+ 
+    <?php endwhile; endif; ?>
 		<?php 
 			if($gallery){
 				for($i = 0; $i < count($gallery); $i++){
@@ -54,7 +62,7 @@ get_template_part('content', 'header');
 		
 		?>
 	</div>
-	<h2>HI THERE</h2>
+
 </div>
 		
 	</div><!-- .row -->
@@ -66,35 +74,35 @@ get_template_part('content', 'header');
 <div id="gallery"></div>
         <div id="img-1-gall" class="gall">
         	
-<?php get_template_part('content', 'product-sculpture'); ?>
+<?php get_template_part('content', 'ajax-sculpture'); ?>
 
 </div>
 
 <div id="img-2-gall" class="hide gall">
-<?php get_template_part('content', 'product-ceramic'); ?>
+<?php get_template_part('content', 'ajax-sculpture'); ?>
 <?php //get_template_part('content', 'product-lightbox'); ?>
 </div>
 
 <div id="img-3-gall" class="hide gall">
-<?php get_template_part('content', 'product-tiles'); ?>
+<?php get_template_part('content', 'ajax-sculpture'); ?>
 
 </div>
 				
 
 		
 
-    <!-- </div>
+    </div>
      		<div class="center col-md-12">
 					<i class="fa fa-chevron-up to-top" id="chevy1"></i>
-				</div>    -->  
+				</div>     
 
 
 
 
 <?php get_footer(); ?>
 <script type="text/javascript">
-// $(function() {
-// 	$('html, body').animate({ scrollTop: 60 }, 1200);
-// 	console.log('you are on the home page');
-// });
+$(function() {
+	$('html, body').animate({ scrollTop: 60 }, 1200);
+	console.log('you are on the home page');
+});
 </script>   

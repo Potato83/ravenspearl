@@ -147,7 +147,7 @@ add_filter( 'woocommerce_product_single_add_to_cart_text', 'woo_custom_cart_butt
  
 function woo_custom_cart_button_text() {
  
-        return __( 'Purchase', 'woocommerce' );
+        return __( 'Buy', 'woocommerce' );
  
 }
 
@@ -200,3 +200,45 @@ function my_theme_wrapper_start() {
 function my_theme_wrapper_end() {
   echo '</main>';
 }
+
+/** CUSTOM WRAPPERS **/
+
+add_action('sam_wrap_before', 'wrap_link_before');
+
+function wrap_link_before() {
+	echo '<div class="gallery-thumb covers darken post-link">';
+}
+
+add_action('sam_wrap_after', 'wrap_link_after');
+
+function wrap_link_after() {
+	echo '</div>';
+}
+
+/**  BLOG / read more **/
+// Replaces the excerpt "Read More" text by a link
+function new_excerpt_more($more) {
+       global $post;
+	return ' <a class="moretag" href=" '. get_permalink($post->ID) . '">[...]</a>';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
+
+/** Test custom sort by **/
+add_filter( 'woocommerce_get_catalog_ordering_args', 'custom_woocommerce_get_catalog_ordering_args' );
+function custom_woocommerce_get_catalog_ordering_args( $args ) {
+  $orderby_value = isset( $_GET['orderby'] ) ? woocommerce_clean( $_GET['orderby'] ) : apply_filters( 'woocommerce_default_catalog_orderby', get_option( 'woocommerce_default_catalog_orderby' ) );
+	if ( 'random_list' == $orderby_value ) {
+		$args['orderby'] = 'rand';
+		$args['order'] = '';
+		$args['meta_key'] = '';
+	}
+	return $args;
+}
+add_filter( 'woocommerce_default_catalog_orderby_options', 'custom_woocommerce_catalog_orderby' );
+add_filter( 'woocommerce_catalog_orderby', 'custom_woocommerce_catalog_orderby' );
+function custom_woocommerce_catalog_orderby( $sortby ) {
+	$sortby['random_list'] = 'Random0-sammy';
+	return $sortby;
+}
+
+/** End test **/

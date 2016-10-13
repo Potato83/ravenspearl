@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Home Page
+Template Name: Homexx Page
  */
 get_header();
 $gallery = get_field('gallery');

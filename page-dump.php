@@ -1,3 +1,166 @@
+<!-- comments.php -->
+<div id="comments" class="comments-area">
+
+	<?php
+	// You can start editing here -- including this comment!
+	if ( have_comments() ) : ?>
+		<h2 class="comments-title">
+			<?php
+				printf( // WPCS: XSS OK.
+					esc_html( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'ravenspearl' ) ),
+					number_format_i18n( get_comments_number() ),
+					'<span>' . get_the_title() . '</span>'
+				);
+			?>
+		</h2>
+
+		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
+		<nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
+			<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'ravenspearl' ); ?></h2>
+			<div class="nav-links">
+
+				<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'ravenspearl' ) ); ?></div>
+				<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'ravenspearl' ) ); ?></div>
+
+			</div><!-- .nav-links -->
+		</nav><!-- #comment-nav-above -->
+		<?php endif; // Check for comment navigation. ?>
+
+		<ol class="comment-list">
+			<?php
+				wp_list_comments( array(
+					'style'      => 'ol',
+					'short_ping' => true,
+				) );
+			?>
+		</ol><!-- .comment-list -->
+
+		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
+		<nav id="comment-nav-below" class="navigation comment-navigation" role="navigation">
+			<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'ravenspearl' ); ?></h2>
+			<div class="nav-links">
+
+				<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'ravenspearl' ) ); ?></div>
+				<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'ravenspearl' ) ); ?></div>
+
+			</div><!-- .nav-links -->
+		</nav><!-- #comment-nav-below -->
+		<?php
+		endif; // Check for comment navigation.
+
+	endif; // Check for have_comments().
+
+
+	// If comments are closed and there are comments, let's leave a little note, shall we?
+	if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
+
+		<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'ravenspearl' ); ?></p>
+	<?php
+	endif;
+
+	comment_form();
+	?>
+
+</div><!-- #comments -->
+
+
+
+
+
+
+
+
+
+<!-- index.php -->
+<?php
+		 if ( have_posts() ) :
+
+		 	if ( is_home() && ! is_front_page() ) : ?>
+				<header>
+		 			<h1 class="page-title screen-reader-text"><?php single_post_title(); ?>(REGGE)</h1>
+
+		 		</header>
+				
+		 	<?php
+		 	endif;
+		 	?>
+
+		<div id="single-post-container">CONTAINER HERE</div>
+
+		<?php	/* Start the Loop */
+			while ( have_posts() ) : the_post();
+
+				/*
+				 * Include the Post-Format-specific template for the content.
+				 * If you want to override this in a child theme, then include a file
+				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+				 */
+				get_template_part( 'template-parts/content', get_post_format() );
+
+			endwhile;
+
+			the_posts_navigation();
+
+		else :
+
+			get_template_part( 'template-parts/content', 'none' );
+
+		endif; ?>
+
+
+
+
+
+<!-- sessions -->
+if(isset($_SESSION['myKey'])) {
+    $value = $_SESSION['myKey'];
+} else {
+    $value = '';
+}
+echo $value;
+
+/** Sessions **/
+add_action('init', 'myStartSession', 1);
+add_action('wp_logout', 'myEndSession');
+add_action('wp_login', 'myEndSession');
+
+function myStartSession() {
+    if(!session_id()) {
+        session_start();
+    }
+}
+
+function myEndSession() {
+    session_destroy ();
+}
+<?php 
+global $post;
+$terms = get_the_terms( $post->ID, 'product_cat' );
+foreach ($terms as $term) {
+    $product_cat_id = $term->term_id;
+    break;
+}
+
+$current_cat = strtolower($product->get_categories( ', ' . _n( '', '', sizeof( get_the_terms( $post->ID, 'product_cat' ) ), 'woocommerce' ) )); 
+echo $current_cat;
+$_SESSION['myKey'] = $current_cat;
+
+?>
+
+
+
+<!-- lightbox -->
+<li class="product col-md-4">    
+    <a class="thumb darken" href="<?php echo woocommerce_placeholder_img_src()?>" data-rel="lightbox" title="<?php echo esc_attr($loop->post->post_title ? $loop->post->post_title : $loop->post->ID); ?>">
+        
+        
+        <?php echo '<img src="'.woocommerce_placeholder_img_src().'" alt="Placeholder" width="300px" height="300px" />'; ?></a>
+        <br />
+  </li>
+
+
+
+
 <!-- GOOD stuff -->
 
 <?php

@@ -13,7 +13,10 @@
 
 	</div><!-- #main-content -->
 </div><!-- .main-container -->
-
+<footer class="custom-foot">
+	<p>FOOTER CONTENT... Could put another menu in here... contact info? copyright... etc etc</p>
+	<p>&copy; <?php echo date('Y'); ?> Raven's Pearl</p>
+</footer>
 
 
 <?php wp_footer(); ?>

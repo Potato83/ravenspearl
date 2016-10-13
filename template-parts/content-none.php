@@ -10,11 +10,15 @@
 ?>
 
 <section class="no-results not-found">
-	<header class="page-header">
+	<header class="page-header center">
 		<h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'ravenspearl' ); ?></h1>
 	</header><!-- .page-header -->
-
+	
 	<div class="page-content">
+		<div class="container blog-container">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="padder"></div>
 		<?php
 		if ( is_home() && current_user_can( 'publish_posts' ) ) : ?>
 
@@ -33,5 +37,11 @@
 				get_search_form();
 
 		endif; ?>
+		</div><!-- col-md-8 -->
+					<div class="col-md-4">
+						<?php get_template_part('content', 'sidebar'); ?>
+					</div>
+				</div><!-- row -->
+			</div><!-- blog-container -->
 	</div><!-- .page-content -->
 </section><!-- .no-results -->

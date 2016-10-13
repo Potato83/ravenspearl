@@ -7,15 +7,17 @@
  * @package RavensPearl
  */
 
-?>
 
+get_template_part('content', 'header'); ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
+	<header class="entry-header center">
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-		HALLO
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
+		<div class="container blog-container">
+				<div class="row">
+					<div class="col-md-12">
 		whoa la (template-parts/content-page.php)
 		<?php
 			the_content();
@@ -25,19 +27,22 @@
 				'after'  => '</div>',
 			) );
 		?>
+				</div>
+			</div><!-- row -->
+		</div><!-- blog-container -->
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
 		<?php
-			edit_post_link(
-				sprintf(
-					/* translators: %s: Name of current post */
-					esc_html__( 'Edit %s', 'ravenspearl' ),
-					the_title( '<span class="screen-reader-text">"', '"</span>', false )
-				),
-				'<span class="edit-link">',
-				'</span>'
-			);
+			// edit_post_link(
+			// 	sprintf(
+			// 		esc_html__( 'Edit %s', 'ravenspearl' ),
+			// 		the_title( '<span class="screen-reader-text">"', '"</span>', false )
+			// 	),
+			// 	'<span class="edit-link">',
+			// 	'</span>'
+			// );
 		?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->
+<div class="padder"></div>

@@ -1,12 +1,10 @@
 
-<div class="padder"></div>
 <div class="fullwidth">
-	<div class="work-title">tiles</div>
+	<div class="work-title">sculpture</div>
 </div>
-
 <?php
 $args = array(  'post_type' => 'product', 
- 								'product_cat' => 'tiles',
+ 								'product_cat' => 'sculpture',
  								'posts_per_page' => -1,
  								'columns' => '3',  							
  								);
@@ -18,7 +16,7 @@ while ( $loop->have_posts() ) : $loop->the_post(); global $product; ?>
         
         
         <?php if (has_post_thumbnail( $loop->post->ID )) echo get_the_post_thumbnail($loop->post->ID, 'shop_catalog'); else echo '<img src="'.woocommerce_placeholder_img_src().'" alt="Placeholder" width="300px" height="300px" />'; ?></a>
-        </br>
+        <br />
   </li>
     <?php
 /**
@@ -27,7 +25,7 @@ while ( $loop->have_posts() ) : $loop->the_post(); global $product; ?>
  * @hooked woocommerce_pagination - 10
  * @hooked woocommerce_catalog_ordering - 20
  */
-//do_action( 'woocommerce_pagination' );
+do_action( 'woocommerce_pagination' );
         ?>
 <?php endwhile; ?>
 <?php wp_reset_query(); ?>
